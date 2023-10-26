@@ -32,5 +32,4 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/llvm/llvm-project.git
           cd llvm-project
-          cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_USE_LINKER=lld
-          ninja -C build
+          cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
