@@ -38,5 +38,5 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/llvm/llvm-project.git
           cd llvm-project
-          cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="AArch64;X86"
           ninja -C build
