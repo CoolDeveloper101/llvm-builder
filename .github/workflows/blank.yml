@@ -27,6 +27,12 @@ jobs:
         run: |
           sudo apt update
           sudo apt install ninja-build
+
+
+      - uses: rui314/setup-mold@v1
+        with:
+          mold-version: 2.3.1
+
       
       - name: Build LLVM
         run: |
