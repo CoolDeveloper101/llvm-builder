@@ -34,9 +34,20 @@ jobs:
       
       - name: Build LLVM
         run: |
+          
+          curl https://raw.githubusercontent.com/tristanisham/zvm/master/install.sh | bash
+          echo "# ZVM" >> $HOME/.profile
+          echo export ZVM_INSTALL="$HOME/.zvm/self" >> $HOME/.profile
+          echo export PATH="$PATH:$HOME/.zvm/bin" >> $HOME/.profile
+          echo export PATH="$PATH:$ZVM_INSTALL/" >> $HOME/.profile
+
+          zvm i master
+          
           git clone --depth 1 https://github.com/llvm/llvm-project.git
           cd llvm-project
-          export CC=clang
-          export CXX=clang++
-          cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="AArch64;X86"
+          
+          export CC="zig cc"
+          export CXX="zig c++"
+          export ASM="zig cc"
+          cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="AArch64;X86" -DLLVM_USE_LINKER=mold
           ninja -C build
