@@ -37,10 +37,9 @@ jobs:
           
           curl https://raw.githubusercontent.com/tristanisham/zvm/master/install.sh | bash
           echo "# ZVM" >> $HOME/.profile
-          echo export ZVM_INSTALL="$HOME/.zvm/self" >> $HOME/.profile
-          echo export PATH="$PATH:$HOME/.zvm/bin" >> $HOME/.profile
-          echo export PATH="$PATH:$ZVM_INSTALL/" >> $HOME/.profile
-          source ~/.profile
+          export ZVM_INSTALL="$HOME/.zvm/self"
+          export PATH="$PATH:$HOME/.zvm/bin"
+          export PATH="$PATH:$ZVM_INSTALL/"
           zvm i master
           
           git clone --depth 1 https://github.com/llvm/llvm-project.git
